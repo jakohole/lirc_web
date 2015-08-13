@@ -11,11 +11,21 @@ var express = require('express'),
 
 // Precompile templates
 var JST = {
-    index: swig.compileFile(__dirname + '/templates/index.swig')
+    index: swig.compileFile(__dirname + '/templates/index.swig'),
+    exist: swig.compileFile(__dirname + '/templates/exist.swig'),
+    status: swig.compileFile(__dirname + '/templates/status.swig'),
+    schedule: swig.compileFile(__dirname + '/templates/schedule.swig'),
+    teach: swig.compileFile(__dirname + '/templates/teach.swig'),
+    auto: swig.compileFile(__dirname + '/templates/auto.swig')
 };
 
 // Create app
 var app = module.exports = express();
+
+/*swig.init({
+    root: VIEWS_DIR, //Note this directory is your Views directory
+    allowErrors: true // allows errors to be thrown and caught by express
+});*/
 
 // App configuration
 app.engine('.html', consolidate.swig);
@@ -61,6 +71,64 @@ app.get('/', function(req, res) {
         labelForCommand: labelFor.command
     }));
 });
+
+app.get('/exist', function(req, res) {
+    res.send(JST['exist'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters,
+        labelForRemote: labelFor.remote,
+        labelForCommand: labelFor.command
+    }));
+});
+
+app.get('/status', function(req, res) {
+    res.send(JST['status'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters,
+        labelForRemote: labelFor.remote,
+        labelForCommand: labelFor.command
+    }));
+});
+
+app.get('/schedule', function(req, res) {
+    res.send(JST['schedule'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters,
+        labelForRemote: labelFor.remote,
+        labelForCommand: labelFor.command
+    }));
+});
+
+app.get('/teach', function(req, res) {
+    res.send(JST['teach'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters,
+        labelForRemote: labelFor.remote,
+        labelForCommand: labelFor.command
+    }));
+});
+
+app.get('/auto', function(req, res) {
+    res.send(JST['auto'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters,
+        labelForRemote: labelFor.remote,
+        labelForCommand: labelFor.command
+    }));
+});
+
+/*app.get('/', function(req.res) {
+    res.send()*/
+
+
+
+
+
 
 // List all remotes in JSON format
 app.get('/remotes.json', function(req, res) {

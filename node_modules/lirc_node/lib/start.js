@@ -1,0 +1,10 @@
+var exec = require('child_process').exec;
+
+exports = module.exports = Start;
+
+function Start() {};
+
+Start = function(){
+	return 'sudo /etc/init.d/lirc start';
+
+};

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS-->
+    <!--link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')-->
+    <!-- Optional theme-->
+    <!--link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css')-->
+    <!-- Latest compiled and minified JavaScript-->
+    <!--script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')-->
+    <!--css-->
+    <!--link(href='http://sites.simbla.com/static/css/bootstrap3.min.css', rel='stylesheet')-->
+    <link href="http://static.triballabs.net/Bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://static.triballabs.net/Bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="http://static.triballabs.net/Bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://static.triballabs.net/Bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="http://static.triballabs.net/Bootstrap/css/docs.css" rel="stylesheet"/>
+    <link href="http://static.triballabs.net/Bootstrap/css/tribal-bootstrap.css" rel="stylesheet"/>
+    <link href="http://static.triballabs.net/Bootstrap/css/tribal-timetable.css" rel="stylesheet"/>
+    <!--script(type='text/javascript',src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')-->
+    <!--script(type='text/javascript',src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')-->
+    <!--script(type='text/javascript',src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js')-->
+    
+    <!--///////////////////////-->
+    <!--script(type='text/javascript', src='http://static.triballabs.net/Bootstrap/js/jquery-latest.js')-->
+    <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/jquery.ba-resize.js"></script>
+    <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/bootstrap-collapse.js"></script>
+    <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/tribal.js"></script>
+    <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/tribal-shared.js"></script>
+    <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/tribal-timetable.js"></script>
+    <title>RACOS</title>
+    
+  </head>
+  {% block head %}
+  <body data-offset="80">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" data-toggle="collapse" data-target="#racos-navbar-collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="brand">RACOS</a>
+          <div id="#racos-navbar-collapse" class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/schedule">Schedule</a></li>
+              <li><a href="/about">About</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  {% endblock %}
+  {% block content %}{% endblock %}
+</html>

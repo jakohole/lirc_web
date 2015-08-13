@@ -5,10 +5,10 @@
   "version": "0.0.8",
   "private": true,
   "dependencies": {
+    "consolidate": "*",
     "express": "3.0.6",
     "lirc_node": "*",
-    "swig": "0.13.5",
-    "consolidate": "*"
+    "swig": "^0.13.5"
   },
   "devDependencies": {
     "mocha": "*",
