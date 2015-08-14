@@ -159,12 +159,14 @@ app.get('/macros/:macro.json', function(req, res) {
     }
 });
 
-
+console.log(req.params.remote);
+console.log(req.params.command);
 // Send :remote/:command one time
 app.post('/remotes/:remote/:command', function(req, res) {
     lirc_node.irsend.send_once(req.params.remote, req.params.command, function() {});
     res.setHeader('Cache-Control', 'no-cache');
     res.send(200);
+
 });
 
 // Start sending :remote/:command repeatedly
