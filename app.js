@@ -14,6 +14,7 @@ var JST = {
     index: swig.compileFile(__dirname + '/templates/index.swig'),
     exist: swig.compileFile(__dirname + '/templates/exist.swig'),
     status: swig.compileFile(__dirname + '/templates/status.swig'),
+    status2: swig.compileFile(__dirname + '/templates/status2.swig'),
     schedule: swig.compileFile(__dirname + '/templates/schedule.swig'),
     teach: swig.compileFile(__dirname + '/templates/teach.swig'),
     auto: swig.compileFile(__dirname + '/templates/auto.swig')
@@ -82,8 +83,8 @@ app.get('/exist', function(req, res) {
     }));
 });
 
-app.get('/status', function(req, res) {
-    res.send(JST['status'].render({
+app.get('/status2', function(req, res) {
+    res.send(JST['status2'].render({
         remotes: lirc_node.remotes,
         macros: config.macros,
         repeaters: config.repeaters,
