@@ -126,6 +126,6 @@
               </div> 
       </div>
 
-                          
+      <script src="static/js/compiled/app.js" type="text/javascript" charset="utf-8"></script>                
 </body>
 </html>
