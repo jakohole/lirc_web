@@ -114,6 +114,8 @@
                                <li class="command">
                                  <button class="command-link {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-wide btn-large btn-primary" href="/remotes/{{ remoteName }}/{{ command|url_encode }}">{{ labelForCommand(remoteName, command) }}</button>
                                </li>
+                               <p> </p>
+                               <p> </p>
                             {% endfor %}
                             </ul>
                           </li>
