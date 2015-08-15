@@ -17,7 +17,8 @@ var JST = {
     status2: swig.compileFile(__dirname + '/templates/status2.swig'),
     schedule: swig.compileFile(__dirname + '/templates/schedule.swig'),
     teach: swig.compileFile(__dirname + '/templates/teach.swig'),
-    auto: swig.compileFile(__dirname + '/templates/auto.swig')
+    auto: swig.compileFile(__dirname + '/templates/auto.swig'),
+    manual: swig.compileFile(__dirname + '/templates/manual.swig')
 };
 
 // Create app
@@ -123,12 +124,19 @@ app.get('/auto', function(req, res) {
     }));
 });
 
+app.get('/manual', function(req, res) {
+    res.send(JST['manual'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters,
+        labelForRemote: labelFor.remote,
+        labelForCommand: labelFor.command
+    }));
+});
+
+
 /*app.get('/', function(req.res) {
     res.send()*/
-
-
-
-
 
 
 // List all remotes in JSON format

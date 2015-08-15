@@ -29,12 +29,21 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic"/>
   <script src="http://sites.simbla.com/static/js/jquery.js"></script>
   <meta name="page-source" content="site-id=55c6f14a618ffa7671dd3bd6, page-id=55c6f16a618ffa7671dd3bd7, master-page-id="/>
+<<<<<<< Updated upstream
 
 
+=======
+  <!--<link rel="stylesheet" href="css/compiled/app.css" />-->
+    
+>>>>>>> Stashed changes
   <title>RACOS</title>
 
 </head>
+<<<<<<< Updated upstream
 <body ontouchstart="">
+=======
+<body ontouch="">
+>>>>>>> Stashed changes
 
   <div id="windowDiv">
     <div id="MarginsTop" style="height: 0px;" class="row"></div>
@@ -60,7 +69,7 @@
                 <!--<form id="P5" data-drag="P5" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="link" data-success="" data-success-type="link" action="" class="simblaEL">-->
                   <div id="P35" data-drag="P35" class="simblaEL tc"></div>
                   <div id="P15" data-drag="P15" class="simblaEL tc"></div>
-                  <div id="P24" data-drag="P24" class="simblaEL tc">
+             <!-- <div id="P24" data-drag="P24" class="simblaEL tc">
                     <div style="cursor: text;" class="textContainer">
                       <h3><font style="font-size: 18px;" face="Raleway" color="#444444"><b>ON/OFF:</b></font></h3>
                     </div>
@@ -85,24 +94,35 @@
                   </div>
                   <div id="P41" data-drag="P41" style="position: relative; margin-top: -25px;" class="simblaEL form-group">
                     <label for="P42"></label>
-                    <input id="P42" type="number" name="humid" placeholder="60" class="form-control input-lg">
+                    <input id="P41" type="number" name="humid" placeholder="60" class="form-control input-lg">
                   </div>
+<<<<<<< Updated upstream
                 <!--</form>-->
               </div>
+=======
+                </form>
+              </div>-->
+>>>>>>> Stashed changes
               <div data-colsize="6" class="sDivider col-md-6 index1">
                 <div id="P18" data-drag="P18" class="simblaEL tcH">
                   <div style="cursor: text;" class="textContainer H1">
                     <h1><font face="Quicksand" style="font-size: 24px;">AC Manual Control</font></h1>
                   </div>
                 </div>
+<<<<<<< Updated upstream
                 <!--<form id="P22" data-drag="P22" onsubmit="" method="POST" name="" data-failure="" data-failure-type="link" data-success="" data-success-type="link" action="" class="simblaEL">
                   <form id="P89" data-drag="P89" onsubmit="" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
                   -->
+=======
+               <!-- <form id="P22" data-drag="P22" onsubmit="" method="POST" name="" data-failure="" data-failure-type="link" data-success="" data-success-type="link" action="" class="simblaEL">
+                  <form id="P89" data-drag="P89" onsubmit="" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
+                   -->
+>>>>>>> Stashed changes
                     <div id="P90" data-drag="P90" class="row simblaEL rDivider">
                       <div data-colsize="12" class="sDivider col-md-12 index0">
                         <div id="P66" data-drag="P66" class="simblaEL tc">
                           <div style="cursor: text;" class="textContainer">
-                            <h3><font style="font-size: 18px;" face="Raleway" color="#444444"><b>ON/OFF:</b></font></h3>
+                     <!--       <h3><font style="font-size: 18px;" face="Raleway" color="#444444"><b>ON/OFF:</b></font></h3>-->
                           </div>
                         </div>
                         <div id="P62" data-drag="P62" style="position: relative; margin-top: -25px;" class="simblaEL form-group">
@@ -115,20 +135,29 @@
                                <li class="command">
                                  <button class="command-link {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-wide btn-large btn-primary" href="/remotes/{{ remoteName }}/{{ command|url_encode }}">{{ labelForCommand(remoteName, command) }}</button>
                                </li>
-                               <p> </p>
-                               <p> </p>
                             {% endfor %}
                             </ul>
-                          </li>
+                          </li><li></li>
                         {% endfor %}
                         </ul>
                       </div>
                     </div>
+<<<<<<< Updated upstream
                   <!--</form>
                 </form>-->
               </div>
+=======
+                 <!-- </form>
+                </form>--> 
+              </div> 
+>>>>>>> Stashed changes
       </div>
+      <div class="next"></div>
 
+<<<<<<< Updated upstream
       <script src="static/js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
+=======
+      <script src="js/compiled/app.js" type="text/javascript" charset="utf-8"></script>                
+>>>>>>> Stashed changes
 </body>
 </html>
