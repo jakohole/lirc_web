@@ -101,18 +101,18 @@
                     <div id="P90" data-drag="P90" class="row simblaEL rDivider">
                       <div data-colsize="12" class="sDivider col-md-12 index0">
                         <div id="P66" data-drag="P66" class="simblaEL tc">
-                          <div style="cursor: text;" class="textContainer">
+                          <!--<div style="cursor: text;" class="textContainer">
                             <h3><font style="font-size: 18px;" face="Raleway" color="#444444"><b>ON/OFF:</b></font></h3>
-                          </div>
+                          </div>-->
                         </div>
                         <div id="P62" data-drag="P62" style="position: relative; margin-top: -25px;" class="simblaEL form-group">
                         <ul class="remotes">
                         {% for remote in remotes %}
                           {% set remoteName = loop.key %}
                           <li class="remote" id="{{ remoteName }}">
-                            <ul class="commands">
+                            <ul class="commands" style="list-style-type:none>
                             {% for command in remote %}
-                               <li class="command">
+                               <li class="command" style="padding: 5px 0;">
                                  <button class="command-link {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-wide btn-large btn-primary" href="/remotes/{{ remoteName }}/{{ command|url_encode }}">{{ labelForCommand(remoteName, command) }}</button>
                                </li>
                                <p> </p>
