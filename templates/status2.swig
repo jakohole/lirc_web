@@ -106,11 +106,11 @@
                           </div>-->
                         </div>
                         <div id="P62" data-drag="P62" style="position: relative; margin-top: -25px;" class="simblaEL form-group">
-                        <ul class="remotes" style="list-style-type:none;">
+                        <ul class="remotes" style="list-style-type:none">
                         {% for remote in remotes %}
                           {% set remoteName = loop.key %}
                           <li class="remote" id="{{ remoteName }}">
-                            <ul class="commands" style="list-style-type:none;">
+                            <ul class="commands" style="list-style-type:none">
                             {% for command in remote %}
                                <li class="command" style="padding: 5px 0;">
                                  <button class="command-link {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-wide btn-large btn-primary" href="/remotes/{{ remoteName }}/{{ command|url_encode }}">{{ labelForCommand(remoteName, command) }}</button>
