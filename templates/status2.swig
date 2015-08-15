@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>    
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  
+
   <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/jquery.ba-resize.js"></script>
   <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/bootstrap-tooltip.js"></script>
   <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/bootstrap-collapse.js"></script>
@@ -15,7 +15,7 @@
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <link href="http://sites.simbla.com/static/css/bootstrap3.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
@@ -29,12 +29,12 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic"/>
   <script src="http://sites.simbla.com/static/js/jquery.js"></script>
   <meta name="page-source" content="site-id=55c6f14a618ffa7671dd3bd6, page-id=55c6f16a618ffa7671dd3bd7, master-page-id="/>
-    
-    
+
+
   <title>RACOS</title>
-    
+
 </head>
-<body data-offset="80">
+<body ontouchstart="">
 
   <div id="windowDiv">
     <div id="MarginsTop" style="height: 0px;" class="row"></div>
@@ -57,7 +57,7 @@
                     <h1><font face="Quicksand" style="font-size: 24px;">AC Status</font></h1>
                   </div>
                 </div>
-                <form id="P5" data-drag="P5" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="link" data-success="" data-success-type="link" action="" class="simblaEL">
+                <!--<form id="P5" data-drag="P5" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="link" data-success="" data-success-type="link" action="" class="simblaEL">-->
                   <div id="P35" data-drag="P35" class="simblaEL tc"></div>
                   <div id="P15" data-drag="P15" class="simblaEL tc"></div>
                   <div id="P24" data-drag="P24" class="simblaEL tc">
@@ -87,7 +87,7 @@
                     <label for="P42"></label>
                     <input id="P42" type="number" name="humid" placeholder="60" class="form-control input-lg">
                   </div>
-                </form>
+                <!--</form>-->
               </div>
               <div data-colsize="6" class="sDivider col-md-6 index1">
                 <div id="P18" data-drag="P18" class="simblaEL tcH">
@@ -95,8 +95,9 @@
                     <h1><font face="Quicksand" style="font-size: 24px;">AC Manual Control</font></h1>
                   </div>
                 </div>
-                <form id="P22" data-drag="P22" onsubmit="" method="POST" name="" data-failure="" data-failure-type="link" data-success="" data-success-type="link" action="" class="simblaEL">
+                <!--<form id="P22" data-drag="P22" onsubmit="" method="POST" name="" data-failure="" data-failure-type="link" data-success="" data-success-type="link" action="" class="simblaEL">
                   <form id="P89" data-drag="P89" onsubmit="" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
+                  -->
                     <div id="P90" data-drag="P90" class="row simblaEL rDivider">
                       <div data-colsize="12" class="sDivider col-md-12 index0">
                         <div id="P66" data-drag="P66" class="simblaEL tc">
@@ -123,11 +124,11 @@
                         </ul>
                       </div>
                     </div>
-                  </form>
-                </form> 
-              </div> 
+                  <!--</form>
+                </form>-->
+              </div>
       </div>
 
-      <script src="static/js/compiled/app.js" type="text/javascript" charset="utf-8"></script>                
+      <script src="static/js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
