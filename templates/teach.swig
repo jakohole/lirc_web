@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>    
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <!-- Latest compiled and minified CSS-->
@@ -23,7 +23,7 @@
     <!-script(type='text/javascript',src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')-->
     <!--script(type='text/javascript',src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')-->
     <!--script(type='text/javascript',src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js')-->
-    
+
     <!--///////////////////////-->
     <!--script(type='text/javascript', src='http://static.triballabs.net/Bootstrap/js/jquery-latest.js')-->
     <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/jquery.ba-resize.js"></script>
@@ -58,7 +58,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     <title>RACOS</title>
-    
+
   </head>
 
     <body data-offset="80">
@@ -93,14 +93,14 @@
         </form>
         <div id="P14" data-drag="P14" style="position: relative; margin-top: 50px; border: 5px double rgb(142, 199, 172); border-radius: 12px;" data-border-type="All" class="row simblaEL rDivider">
           <div data-colsize="4" class="sDivider col-md-4 index0">
-            <form id="P32" data-drag="P32" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
+          <!--  <form id="P32" data-drag="P32" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">-->
               <div id="P33" data-drag="P33" style="position: relative; margin-top: 30px;" class="row simblaEL rDivider">
                 <div data-colsize="12" class="sDivider col-md-12 index0">
-                  <button id="P40" type="submit" data-drag="P40" class="simblaEL btn btn-success btn-lg btn-block">POWER</button>
+                  <button id="P40" data-drag="P40" class="simblaEL btn btn-success btn-lg btn-block" href="/out/power">POWER</button>
                 </div>
               </div>
-              <input type="hidden" name="simblaEmail" value="55c6fab5618ffa7671dd3bdc"/>
-            </form>
+              <!--<input type="hidden" name="simblaEmail" value="55c6fab5618ffa7671dd3bdc"/>-->
+            <!--</form>-->
             <form id="P44" data-drag="P44" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
               <div id="P45" data-drag="P45" style="position: relative; margin-top: 30px;" class="row simblaEL rDivider">
                 <div data-colsize="12" class="sDivider col-md-12 index0">

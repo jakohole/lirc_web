@@ -126,11 +126,6 @@ app.get('/auto', function(req, res) {
 /*app.get('/', function(req.res) {
     res.send()*/
 
-
-
-
-
-
 // List all remotes in JSON format
 app.get('/remotes.json', function(req, res) {
     res.json(lirc_node.remotes);
@@ -158,11 +153,40 @@ app.get('/macros/:macro.json', function(req, res) {
         res.send(404);
     }
 });
+var outfiles = {};
+app.get('out/:outfile', function(req,res){
+    var outfile = req.param("outfile");
+
+    if(!outfiles.hasOwnProperty(outfile)) {
+      res.send("invalid file");
+      return;
+
+    }
+
+});
+
+var mode2command = "sudo mode2 -d /dev/lirc0 -m > " + outfile;
+exec(mode2command, function(error, stdout, stderr){
+  if(error)
+    res.send("Error sending mode2");
+  else {}
+    res.send("Successfully sent mode2");
+  }
+
+});
+
+
+/*app.post('/out/:outfile ',function(req,res){
+
+  lirc_node.mode2.out(req.params.outfile, function() {});
+  res.setHeader('Cache-Control', 'no-cache');
+  res.send(200);
+});*/
 
 
 // Send :remote/:command one time
 app.post('/remotes/:remote/:command', function(req, res) {
-    
+
     console.log(req.params.remote);
     console.log(req.params.command);
 
