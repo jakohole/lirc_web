@@ -1,0 +1,24 @@
+{
+  "repeaters": {
+   "SonyTV": {
+     "VolumeUp": true
+    }
+  },
+  "macros": {
+    "Listen": [
+      [ "Yamaha", "Power" ],
+      [ "delay", 500]
+    ]
+  },
+  "commandLabels": {
+    "aircon": {
+      "national_power": "Power",
+      "temp_16": "16 C",
+      "temp_17": "17 C",
+      "temp_18": "18 C"
+    }
+  },
+  "remoteLabels": {
+     "National": "National"
+  }
+}
