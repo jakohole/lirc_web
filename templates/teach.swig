@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
 
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>    
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <!-- Latest compiled and minified CSS-->
@@ -23,7 +23,7 @@
     <!-script(type='text/javascript',src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')-->
     <!--script(type='text/javascript',src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')-->
     <!--script(type='text/javascript',src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js')-->
-    
+
     <!--///////////////////////-->
     <!--script(type='text/javascript', src='http://static.triballabs.net/Bootstrap/js/jquery-latest.js')-->
     <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/jquery.ba-resize.js"></script>
@@ -58,16 +58,16 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     <title>RACOS</title>
-    
+
   </head>
 
-    <body data-offset="80">
+    <body ontouchstart="">
 
 
 
 <div id="windowDiv">
   <div id="MarginsTop" style="height: 0px;" class="row"></div>
-  <div id="bodyContainer" style="width:100%">
+  <div id="bodyContainer" style="width:100%" ng-app>
     <div id="P1" data-drag="P1" style="position: relative;" class="simblaEL containerHolder">
       <div style="margin-top: 80px;" class="container">
         <div id="P2" data-drag="P2" class="row simblaEL rDivider">
@@ -79,135 +79,102 @@
             </div>
           </div>
         </div>
-        <form id="P73" data-drag="P73" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" style="position: relative; margin-left: 300px; margin-right: 300px; border: 12px solid rgb(142, 199, 172); border-radius: 13px; background-color: rgb(138, 220, 158);" data-border-type="All" class="simblaEL">
+       <!-- <form id="P73" data-drag="P73" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" style="position: relative; margin-left: 300px; margin-right: 300px; border: 12px solid rgb(142, 199, 172); border-radius: 13px; background-color: rgb(138, 220, 158);" data-border-type="All" class="simblaEL">-->
           <div id="P74" data-drag="P74" style="position: relative; margin-bottom: 20px;" class="row simblaEL rDivider">
             <div data-colsize="12" class="sDivider col-md-12 index0">
               <div id="P77" data-drag="P77" style="position: relative; margin-top: 20px;" class="simblaEL form-group">
                 <label for="P78">New AC Brand</label>
-                <input id="P78" type="text" name="newbrand" placeholder="" class="form-control input-lg"/>
+                <input id="P78" type="text" name="newbrand" placeholder="tabme" class="form-control input-lg" href="config/remote"/>
               </div>
-              <button id="P81" type="submit" data-drag="P81" class="simblaEL btn btn-success btn-lg btn-block">SAVE</button>
-            </div>
+              <!--<button id="P81" type="submit" data-drag="P81" class="simblaEL btn btn-success btn-lg btn-block">SAVE</button>
+            </div>-->
           </div>
-          <input type="hidden" name="simblaEmail" value="55c6fab5618ffa7671dd3bdc"/>
-        </form>
+       <!-- </form> -->
         <div id="P14" data-drag="P14" style="position: relative; margin-top: 50px; border: 5px double rgb(142, 199, 172); border-radius: 12px;" data-border-type="All" class="row simblaEL rDivider">
           <div data-colsize="4" class="sDivider col-md-4 index0">
-            <form id="P32" data-drag="P32" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
+          <!--  <form id="P32" data-drag="P32" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">-->
               <div id="P33" data-drag="P33" style="position: relative; margin-top: 30px;" class="row simblaEL rDivider">
                 <div data-colsize="12" class="sDivider col-md-12 index0">
-                  <button id="P40" type="submit" data-drag="P40" class="simblaEL btn btn-success btn-lg btn-block">POWER</button>
+                  <!--<button class="command-link {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-wide btn-large btn-primary" href="/remotes/{{ remoteName }}/{{ command|url_encode }}">{{ labelForCommand(remoteName, command) }}</button>
+
+
+		  <button class="command-link {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-wide btn-large btn-primary" href="http://www.google.com"> POWER</button>
+
+                  <button id="P40" data-drag="P40" class="command-link command-once  btn btn-wide btn-large btn-promary" href="/mode2/outfile|url_encode">POWER</button>-->
+                 <a id="power" class="btn col-xs-12 btn-lg btn-danger col-xs-12" href="/mode2/power" ng-model="power" ng-click="displaycommand()" name="POWER2"> POWER </a>
+
                 </div>
               </div>
-              <input type="hidden" name="simblaEmail" value="55c6fab5618ffa7671dd3bdc"/>
-            </form>
-            <form id="P44" data-drag="P44" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
+              <!--<input type="hidden" name="simblaEmail" value="55c6fab5618ffa7671dd3bdc"/>-->
+            <!--</form>-->
+           <!-- <form id="P44" data-drag="P44" method="GET" name="settemp" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL" action="/mode2/temp>-->
               <div id="P45" data-drag="P45" style="position: relative; margin-top: 30px;" class="row simblaEL rDivider">
                 <div data-colsize="12" class="sDivider col-md-12 index0">
                   <div id="P50" data-drag="P50" class="simblaEL form-group">
                     <label for="P51"></label>
-                    <select id="P51" name="temp_" class="form-control">
-                      <option>16</option>
-                      <option>17</option>
-                      <option>18</option>
-                      <option>19</option>
-                      <option>20</option>
-                      <option>21</option>
-                      <option>22</option>
-                      <option>23</option>
-                      <option>24</option>
-                      <option>25</option>
-                      <option>26</option>
-                      <option>27</option>
-                      <option>28</option>
-                      <option>29</option>
-                      <option>30</option>
-                      <option>16</option>
-                      <option>17</option>
-                      <option>18</option>
-                      <option>19</option>
-                      <option>20</option>
-                      <option>21</option>
-                      <option>22</option>
-                      <option>23</option>
-                      <option>24</option>
-                      <option>25</option>
-                      <option>26</option>
-                      <option>27</option>
-                      <option>28</option>
-                      <option>29</option>
-                      <option>30</option>
-                      <option>16</option>
-                      <option>17</option>
-                      <option>18</option>
-                      <option>19</option>
-                      <option>20</option>
-                      <option>21</option>
-                      <option>22</option>
-                      <option>23</option>
-                      <option>24</option>
-                      <option>25</option>
-                      <option>26</option>
-                      <option>27</option>
-                      <option>28</option>
-                      <option>29</option>
-                      <option>30</option>
-                      <option>16</option>
-                      <option>17</option>
-                      <option>18</option>
-                      <option>19</option>
-                      <option>20</option>
-                      <option>21</option>
-                      <option>22</option>
-                      <option>23</option>
-                      <option>24</option>
-                      <option>25</option>
-                      <option>26</option>
-                      <option>27</option>
-                      <option>28</option>
-                      <option>29</option>
-                      <option>30</option>
+                    <select id="P51" name="temppicker" class="temppicker" onchange="location = this.options[this.selectedIndex].value;">
+                      <option value="/mode2/16">16</option>
+                      <option value="/mode2/17">17</option>
+                      <option value="/mode2/18">18</option>
+                      <option value="/mode2/19">19</option>
+                      <option value="/mode2/20">20</option>
+                      <option value="/mode2/21">21</option>
+                      <option value="/mode2/22">22</option>
+                      <option value="/mode2/23">23</option>
+                      <option value="/mode2/24">24</option>
+                      <option value="/mode2/25">25</option>
+                      <option value="/mode2/26">26</option>
+                      <option value="/mode2/27">27</option>
+                      <option value="/mode2/28">28</option>
+                      <option value="/mode2/29">29</option>
+                      <option value="/mode2/30">30</option>
                     </select>
                   </div>
-                  <button id="P52" type="submit" data-drag="P52" class="simblaEL btn btn-success btn-lg btn-block">TEMPERATURE</button>
-                </div>
+                   <label class="btn col-xs-12 btn-lg btn-danger col-xs-12">TEMPERATURE(C) </label>
+	 <!-- <button id="P52" type="submit" data-drag="P52" class="simblaEL btn btn-success btn-lg btn-block">TEMPERATURE</button>-->
+
+	</div>
               </div>
-              <input type="hidden" name="simblaEmail" value="55c6fab5618ffa7671dd3bdc"/>
-            </form>
-            <form id="P53" data-drag="P53" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
+             <p></p>
+             <p></p>
+            <!--</form>-->
+           <!-- <form id="P53" data-drag="P53" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">-->
               <div id="P55" data-drag="P55" style="position: relative; margin-top: 30px;" class="row simblaEL rDivider">
                 <div data-colsize="12" class="sDivider col-md-12 index0">
                   <div id="P63" data-drag="P63" class="simblaEL form-group">
                     <label for="P64"></label>
                     <select id="P64" name="fan_" class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
+                      <option value="/mode2/1">1</option>
+                      <option value="/mode2/2">2</option>
+                      <option value="/mode2/3">3</option>
                     </select>
                   </div>
-                  <button id="P61" type="submit" data-drag="P61" class="simblaEL btn btn-success btn-lg btn-block">FAN</button>
+                  <label id="P61" data-drag="P61" class="simblaEL btn btn-success btn-lg btn-block">FAN</label>
                 </div>
               </div>
-              <input type="hidden" name="simblaEmail" value="55c6fab5618ffa7671dd3bdc"/>
-            </form>
+             
+           <!-- </form>-->
           </div>
           <div data-colsize="8" class="sDivider col-md-8 index1">
-            <form id="P16" data-drag="P16" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
+           <!-- <form id="P16" data-drag="P16" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">-->
               <div id="P17" data-drag="P17" style="position: relative; margin-top: 80px;" class="row simblaEL rDivider">
                 <div data-colsize="12" class="sDivider col-md-12 index0">
                   <div id="P18" data-drag="P18" style="position: relative;" class="simblaEL form-group">
-                    <label for="P19">Command</label>
-                    <textarea id="P19" name="command" placeholder="" rows="3" class="form-control"></textarea>
+                   <!-- <label for="P19">Command</label>
+                    <textarea ng-model="command" id="P19" name="command" placeholder="" rows="3" class="form-control">{{commandline}}</textarea>-->
                   </div>
                 </div>
               </div>
               <div id="P65" data-drag="P65" style="position: relative; margin-top: 0px; margin-left: 0px; padding-left: 205px; padding-right: 216px;" class="row simblaEL rDivider">
                 <div data-colsize="12" class="sDivider col-md-12 index0">
-                  <button id="P72" type="submit" data-drag="P72" class="simblaEL btn btn-success btn-lg btn-block">END</button>
+                  <p><a href="/mode2/END" id="P72" type="submit" data-drag="P72" class="simblaEL btn btn-success btn-lg btn-block">END</a></p>
+                </div>
+                <div data-colsize="12" class="sDivider col-md-12 index1">
+                 <p> <a href="/mode2/COMMIT" id="P72" type="submit" data-drag="P72" class="simblaEL btn btn-success btn-lg btn-block">COMMIT</a></p>
                 </div>
               </div>
-            </form>
-            <input type="hidden" name="simblaEmail" value="55c6fab5618ffa7671dd3bdc"/><br/><br/><br/>
+           <!-- </form>-->
+            
           </div>
         </div>
       </div>
@@ -218,9 +185,12 @@
 <p></p>
   <!-- .container-->
 </div>
+
+<script src="/js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
 <script src="http://sites.simbla.com/static/js/bootstrap3.min.js">
   <script src="http://sites.simbla.com/static/js/simbla.js?v=0.9.1"></script>
 </script>
-
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+<script> src=/js/controller/command.js"></script>
 </body>
 </html>

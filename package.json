@@ -5,6 +5,7 @@
   "version": "0.0.8",
   "private": true,
   "dependencies": {
+    "angular": "^1.4.4",
     "consolidate": "*",
     "express": "3.0.6",
     "lirc_node": "*",
