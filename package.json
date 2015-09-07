@@ -8,6 +8,7 @@
     "angular": "^1.4.4",
     "consolidate": "*",
     "express": "3.0.6",
+    "jsonfile": "^2.2.1",
     "lirc_node": "*",
     "swig": "^0.13.5"
   },

@@ -6,12 +6,6 @@
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/jquery.ba-resize.js"></script>
-  <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/bootstrap-tooltip.js"></script>
-  <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/bootstrap-collapse.js"></script>
-  <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/tribal.js"></script>
-  <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/tribal-shared.js"></script>
-  <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/tribal-timetable.js"></script>
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -67,7 +61,7 @@
                   </div>
                   <div id="P71" data-drag="P71" style="position: relative; margin-top: -25px;" class="simblaEL form-group">
                     <label for="P72"></label>
-                    <input id="P72" type="text" name="powerstatus" placeholder="ON" class="form-control input-lg">
+                    <input id="P72" type="text" name="powerstatus" class="form-control input-lg" placeholder={{acstatus}}></input>
                   </div>
                   <div id="P59" data-drag="P59" class="simblaEL tc">
                     <div style="cursor: text;" class="textContainer">
@@ -76,17 +70,17 @@
                   </div>
                   <div id="P31" data-drag="P31" style="position: relative; margin-top: -24px; margin-bottom: 17px;" class="simblaEL form-group">
                     <label for="P32"></label>
-                    <input id="P32" type="text" name="name" placeholder="21" class="form-control input-lg">
+                    <input id="P32" type="text" name="name" class="form-control input-lg" placeholder={{temp}} ></input>
                   </div>
-                  <div id="P36" data-drag="P36" class="simblaEL tc">
+                  <!--<div id="P36" data-drag="P36" class="simblaEL tc">
                     <div style="cursor: text;" class="textContainer">
                       <h3><font face="Quicksand" color="#444444"><span style="font-size: 18px; line-height: 19.7999992370605px;"><b>Humidity (%):</b></span></font></h3>
                     </div>
-                  </div>
-                  <div id="P41" data-drag="P41" style="position: relative; margin-top: -25px;" class="simblaEL form-group">
+                  </div>-->
+                  <!--<div id="P41" data-drag="P41" style="position: relative; margin-top: -25px;" class="simblaEL form-group">
                     <label for="P42"></label>
                     <input id="P42" type="number" name="humid" placeholder="60" class="form-control input-lg">
-                  </div>
+                  </div>-->
                 <!--</form>-->
               </div>
               <div data-colsize="6" class="sDivider col-md-6 index1">
@@ -120,6 +114,8 @@
                                <p> </p>
                                <p> </p>
                             {% endfor %}
+                              <p></p>
+                              <p></p>
                             </ul>
                           </li>
                         {% endfor %}

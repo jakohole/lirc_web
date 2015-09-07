@@ -4,7 +4,7 @@
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>    
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
   <!-- Latest compiled and minified CSS-->
   <!--link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')-->
   <!-- Optional theme-->
@@ -26,14 +26,13 @@
     
     <!--///////////////////////-->
     <!--script(type='text/javascript', src='http://static.triballabs.net/Bootstrap/js/jquery-latest.js')-->
-    <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/jquery.ba-resize.js"></script>
+   <!-- <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/jquery.ba-resize.js"></script>
     <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/bootstrap-tooltip.js"></script>
     <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/bootstrap-collapse.js"></script>
     <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/tribal.js"></script>
     <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/tribal-shared.js"></script>
     <script type="text/javascript" src="http://static.triballabs.net/Bootstrap/js/tribal-timetable.js"></script>
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+-->
     <!-- Latest compiled and minified CSS-->
     <!--link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')-->
     <!-- Optional theme-->
@@ -43,6 +42,7 @@
     <!--script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')-->
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
     <link href="http://sites.simbla.com/static/css/bootstrap3.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <link href="http://sites.simbla.com/static/css/style.css" rel="stylesheet"/>
@@ -53,6 +53,10 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic"/>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oxygen:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic"/>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic"/>
+   <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
     <script src="http://sites.simbla.com/static/js/jquery.js"></script>
     <meta name="page-source" content="site-id=55c6f14a618ffa7671dd3bd6, page-id=55c6f16a618ffa7671dd3bd7, master-page-id="/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -72,13 +76,31 @@
                 <h3 style="text-align: center;"><font face="Quicksand" style="font-size: 36px;" color="#f83a22"><b>ROOM INFORMATION</b></font></h3>
               </div>
             </div>
+<script type="text/javascript">
+ $(function() {
+  $('#datepicker').datetimepicker({
+    pickTime: false
+  });
+ });
+ $(function() {
+  $('#starttimepicker').datetimepicker({
+    pickDate: false
+  });
+ });
+ $(function() {
+  $('#endtimepicker').datetimepicker({
+    pickDate: false
+  });
+ });
+
+</script>
             <div id="P36" data-drag="P36" class="row simblaEL rDivider">
               <div data-colsize="12" class="sDivider col-md-12 index0">
                 <div id="P4" data-drag="P4" class="simblaEL tc"></div>
-                <form id="P10" data-drag="P10" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
+                <form id="P10" data-drag="P10" action="/schedule/remote/command" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">
                   <div id="P11" data-drag="P11" class="row simblaEL rDivider">
                     <div data-colsize="12" class="sDivider col-md-12 index0">
-                      <div id="P22" data-drag="P22" class="simblaEL form-group">
+                      <div id="P22" data-drag="P22" class="simblaEL form-group"> 
                         <label for="P23">ROOM: </label>
                         <input id="P23" type="text" name="room" placeholder="BKD 3201" class="form-control input-lg">
                       </div>
@@ -90,17 +112,33 @@
                         <label for="P27">COURSE:</label>
                         <input id="P27" name="COURSE" type="text" placeholder="MATH1" class="input-lg form-control">
                       </div>
-                      <div id="P24" data-drag="P24" class="simblaEL form-group">
+                      <div id="brands">
+                        <label>AC: </label>
+                        <select id="remote" name="remote">
+                          <option>National</option>
+                          <option>Trane</option>
+                        </select>
+                      </div>
+                      <div id="datepicker" data-drag="P24" class="input-append">
                         <label for="P25">DATE:</label>
-                        <input id="P25" type="Date" name="date" placeholder="03/08/2015" class="form-control input-lg">
+                        <input id="P25" data-format="yyyy-MM-dd" type="text" name="datepicker" ></input>
+                         <span class="add-on">
+                           <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i>
+                         </span>
                       </div>
-                      <div id="P32" data-drag="P32" class="simblaEL form-group">
+                      <div id="starttimepicker" data-drag="P32" class="input-append">
                         <label for="P33">START TIME:</label>
-                        <input id="P33" type="text" name="start" placeholder="8.30" class="form-control">
+                        <input id="P33" type="text" name="start_time" data-format="hh:mm:ss"></input>
+                          <span class="add-on">
+                            <i data-time-icon="icon-time"></i>
+                          </span>
                       </div>
-                      <div id="P34" data-drag="P34" class="simblaEL form-group">
+                      <div id="endtimepicker" data-drag="P34" class="input-append">
                         <label for="P35">END TIME: </label>
-                        <input id="P35" type="number" name="endtime" placeholder="12.00" class="form-control">
+                        <input id="P35" type="text" name="end_time" data-format="hh:mm:ss"></input>
+                          <span class="add-on">
+                           <i data-time-icon="icon-time"></i>
+                          </span>
                       </div>
                       <div id="P42" data-drag="P42" class="simblaEL form-group">
                         <label for="P43">TEMPERATURE (C)</label>
@@ -142,7 +180,27 @@
       </div>
       <!-- .container-->
 
-    <script src="/static/js/bootstrap3.min.js"></script>
-    <script src="/static/js/simbla.js?v=0.9.1"></script>
+   <!-- <script src="static/js/bootstrap3.min.js"></script>
+    <script src="static/js/simbla.js?v=0.9.1"></script>-->
+
+    <script type="text/javascript"
+     src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script> 
+    <script type="text/javascript"
+     src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
+    <script type="text/javascript">
+      $('#datetimepicker').datetimepicker({
+        format: 'dd/MM/yyyy hh:mm:ss',
+        language: 'pt-BR'
+      });
+    </script>
+
   </body>
 </html>

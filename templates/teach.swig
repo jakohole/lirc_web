@@ -80,16 +80,17 @@
           </div>
         </div>
        <!-- <form id="P73" data-drag="P73" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" style="position: relative; margin-left: 300px; margin-right: 300px; border: 12px solid rgb(142, 199, 172); border-radius: 13px; background-color: rgb(138, 220, 158);" data-border-type="All" class="simblaEL">-->
+       <form action="/mode2/name" method='POST'>
           <div id="P74" data-drag="P74" style="position: relative; margin-bottom: 20px;" class="row simblaEL rDivider">
             <div data-colsize="12" class="sDivider col-md-12 index0">
               <div id="P77" data-drag="P77" style="position: relative; margin-top: 20px;" class="simblaEL form-group">
                 <label for="P78">New AC Brand</label>
-                <input id="P78" type="text" name="newbrand" placeholder="tabme" class="form-control input-lg" href="config/remote"/>
+                <input id='ac' type="text" name='ac' class="form-control input-lg"></input>
               </div>
-              <!--<button id="P81" type="submit" data-drag="P81" class="simblaEL btn btn-success btn-lg btn-block">SAVE</button>
-            </div>-->
+              <button id="P81" type="submit" data-drag="P81" class="simblaEL btn btn-success btn-lg btn-block">SAVE</button>
+            </div>
           </div>
-       <!-- </form> -->
+       </form>
         <div id="P14" data-drag="P14" style="position: relative; margin-top: 50px; border: 5px double rgb(142, 199, 172); border-radius: 12px;" data-border-type="All" class="row simblaEL rDivider">
           <div data-colsize="4" class="sDivider col-md-4 index0">
           <!--  <form id="P32" data-drag="P32" onsubmit="return simblaFormSubmit(this)" method="POST" name="" data-failure="" data-failure-type="text" data-success="" data-success-type="text" class="simblaEL">-->
@@ -143,7 +144,7 @@
                 <div data-colsize="12" class="sDivider col-md-12 index0">
                   <div id="P63" data-drag="P63" class="simblaEL form-group">
                     <label for="P64"></label>
-                    <select id="P64" name="fan_" class="form-control">
+                    <select id="P64" name="fan_" class="form-control" onchange="location = this.options[this.selectedIndex].value;">
                       <option value="/mode2/1">1</option>
                       <option value="/mode2/2">2</option>
                       <option value="/mode2/3">3</option>
@@ -187,7 +188,7 @@
 </div>
 
 <script src="/js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
-<script src="http://sites.simbla.com/static/js/bootstrap3.min.js">
+<script src="http://sites.simbla.com/static/js/bootstrap3.min.js"></script>
   <script src="http://sites.simbla.com/static/js/simbla.js?v=0.9.1"></script>
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
