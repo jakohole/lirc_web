@@ -1,5 +1,7 @@
 // lirc_web - v0.0.8
-// Alex Bain <alex@alexba.in>
+// Originated by Alex Bain <alex@alexba.in>
+
+// Mode2, Scheduling features by Nat Tangpanichayanont <tnut@hotmail.com>
 
 // Requirements
 var express = require('express'),
@@ -7,11 +9,16 @@ var express = require('express'),
     consolidate = require('consolidate'),
     path = require('path'),
     swig = require('swig'),
-    labels = require('./lib/labels');
-    fs = require ('fs');
-    CombinedStream = require('combined-stream');
-    
-
+    labels = require('./lib/labels'),
+    fs = require ('fs'),
+    CombinedStream = require('combined-stream'),
+    jsonfile = require('jsonfile'),
+    bodyParser = require('body-parser'), 
+    Cronjob = require('cron').CronJob,  
+    MultiStream = require('multistream'),
+    Promise = require('promise'),
+    Crontab = require('crontab'),
+    schedule = require('node-schedule');
 // Precompile template
 var JST = {
     index: swig.compileFile(__dirname + '/templates/index.swig'),
@@ -24,20 +31,37 @@ var JST = {
     manual: swig.compileFile(__dirname + '/templates/manual.swig')
 };
 
+//db
+var orientjs = require('orientjs');
+
+var server = orientjs({
+    host: '192.168.43.14',
+    port: 2424,
+    username: 'root',
+    password: 'admin'
+});
+
+server.list()
+.then(function (dbs) {
+  console.log('There are ' + dbs.length + ' databases on the server.');
+});
+
+var db = server.use('RACOS');
+
+var select = function select() {  
+  db.select('room_code').from('room').scalar().then(function(rooms){
+    console.log('rooms',rooms);
+    });
+}
+
 // Create app
 var app = module.exports = express();
 
 var cp = require('child_process');
 var pstree = require('ps-tree');
-//var exec = cp.exec;
-//var spawn = require('child_process').spawn;
-//var execSync = require('child_process').execSync;
-
-/*swig.init({
-    root: VIEWS_DIR, //Note this directory is your Views directory
-    allowErrors: true // allows errors to be thrown and caught by express
-});*/
-
+var globaltemp=25;
+var globalstatus='OFF';
+var acstatus;
 // App configuration
 app.engine('.html', consolidate.swig);
 app.configure(function() {
@@ -47,6 +71,9 @@ app.configure(function() {
     app.use(express.compress());
     app.use(express.static(__dirname + '/static'));
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
 
 // lirc_web configuration
 var config = {};
@@ -100,8 +127,14 @@ app.get('/status2', function(req, res) {
         macros: config.macros,
         repeaters: config.repeaters,
         labelForRemote: labelFor.remote,
-        labelForCommand: labelFor.command
+        labelForCommand: labelFor.command,
+        acstatus: globalstatus,
+        temp: globaltemp
     }));
+
+    cp.exec("sudo /etc/init.d/lirc start", function(error) {});
+    cp.exec("sudo /etc/init.d/lirc stop", function(error){});
+    cp.exec("sudo /etc/init.d/lirc start", function(error) {});
 });
 
 app.get('/schedule', function(req, res) {
@@ -118,11 +151,12 @@ app.get('/teach', function(req, res) {
     res.send(JST['teach'].render({
         labelForCommand: labelFor.command
     }));
-    cp.exec('cp /etc/lirc/lircdhead.conf /etc/lirc/lircdaircon.conf', function (req,res) {});
 
-    lircdpath = "/etc/lirc/lircdaircon.conf";
-    combinedstream = CombinedStream.create();
-
+      cp.exec("sudo /etc/init.d/lirc stop", function(error, stdout, stderr)    {
+      if(error) {}
+       //res.send("Error stopping LIRC");
+       //res.send("Success");
+      });
 });
 
 app.get('/auto', function(req, res) {
@@ -166,27 +200,16 @@ app.get('/macros/:macro.json', function(req, res) {
     }
 });
 
-//app.get('/mode2/:outfile.json', function(req,res){
-//   res.json(mode2.outfile);
-//});
 var outfiles = {};
 var mode2child;
-/*app.get('/config/:remote', function(req,res){
-
-    //var remotename = req.param("remote");
-
-    //obj = JSON.parse( json );
-    //obj.commandLabels.
-
-});*/
-//app.post('/mode2/:outfile', function(req,res){
-// console.log(req.param("outfile"));
-//});
 
 var outfile;
 var outfiles='';
 var count = 0;
 var lircfile;
+var jsonStr;
+var filePath='content';
+var codecontent;
 
 function getData(filename,dat){
 
@@ -214,48 +237,136 @@ function getData(filename,dat){
   return dat;
 }
 
+app.post('/mode2/:name', function(req,res){
+    
+   // console.log(req.params.name);
+
+    console.log('ac',req.body.ac);
+
+    var acname = req.body.ac.toLowerCase();
+
+    //lircdpath = path.join(__dirname, acname+'.conf');
+    lircdpath = acname+'.conf'; 
+
+    console.log('lirc', lircdpath);
+
+    var copycmd = 'sudo cp /etc/lirc/lircdhead.conf ' + lircdpath;
+ 
+    console.log(copycmd);
+    cp.exec(copycmd);
+
+    fs.writeFile(filePath,'',function(err){});
+
+    //lircdpath = "/etc/lirc/lircdaircon.conf";
+    combinedStream = CombinedStream.create();
+
+    var jsonconfigfile = 'config_'+acname+'.json';
+  
+    jsonStr = {'commandLabels':{'aircon':{}}};
+    console.log(JSON.stringify(jsonStr));
+    console.log(jsonStr);
+
+    jsonfile.writeFile(jsonconfigfile,jsonStr,function (err) {
+      console.error(err);
+    });
+
+
+
+//    lirc_node.irsend.send_once(req.params.remote, req.params.command, function() {});
+    res.setHeader('Cache-Control', 'no-cache');
+    res.send(200);
+    //res.redirect(200,'/teach');
+
+});
+
 app.get('/mode2/:outfile', function(req,res){
      
   outfile = req.param("outfile");
-  //outfiles[count] = outfile.toString();  
-  //console.log (remote);
   console.log(outfile);   
 
+  var copybody = 'sudo cp ' + filePath + ' ' +'body';
+ 
+  cp.exec(copybody, function(error, stdout, stderr) {
+      if(error) {
+       res.send("Error creating LIRC");}
+      else {
+       console.log("Success");}
+    });
 
+  //var body = filePath;
+  var combine = 'combine';
+  var combinedAC = 'lirc_'+lircdpath;
   var data;
   var tail = '/etc/lirc/lircdtail.conf';
+  
   if (outfile == "COMMIT"){
+   //Sync(function(){
+     // console.log(getData(tail,data));
 
-    console.log(getData(tail,data));
-    
-    fs.appendFile (lircdpath, getData(tail,data), function (err){
-     if(err) {console.log(err);}
-    }); 
+    var streams = [
+      fs.createReadStream(lircdpath),
+      fs.createReadStream('body'),
+      fs.createReadStream(tail)
+    ]
+
+  MultiStream(streams).pipe(fs.createWriteStream(combine));    
+
+
+  var cplirc = 'sudo cp combine /etc/lirc/lircd.conf';
+
+  cp.exec(cplirc, function(error) {
+    if(!error) {
+      console.log('COPIED to ', cplirc);
+
+    }
+
+  });
+
+  cp.exec("sudo /etc/init.d/lirc start", function(error, stdout, stderr) {
+      if(error) {
+       res.send("Error starting LIRC");
+      }
+      else {
+       //res.send("Success");
+       //res.setHeader('Cache-Control', 'no-cache');
+       //res.send(200);
+
+      }
+    });
+ 
+    res.setHeader('Cache-Control', 'no-cache');
+    res.send(200);
+//   }
   }
   else if (outfile == "END"){
     pstree(mode2child.pid, function (err,children) {
       cp.spawn('kill', ['-9'].concat(children.map(function (p) {return p.PID})))
      }); 
 
-
-    var filePath = outfiles; // path to file
-    console.log(filePath);
-
     // Skip the 1st line 
-    fs.readFile(filePath, function(err, data) { // read file to memory
+    fs.readFile(outfiles, function(err, data) { // read file to memory
       if (!err) {
         data = data.toString(); // stringify buffer
         var position = data.toString().indexOf('\n'); // find position of new line element
         if (position != -1) { // if new line element found
             data = data.substr(position + 1); // subtract string based on first line length
-
-            fs.writeFile(filePath, data, function(err) { // write file
+            fs.writeFile(outfiles, outfiles, function() {});
+            fs.appendFile(outfiles, data, function(err) { // write file
                 if (err) { // if error, report
                     //console.log (err);
                 }
             });
+            fs.appendFile(filePath, "name ", function() {});
+            fs.appendFile(filePath, outfiles, function() {});
+            fs.appendFile(filePath, data, function(err) { // write file
+                if (err) { // if error, report
+                    //console.log (err);
+                }
+            });
+            fs.appendFile(filePath, '\n', function() {});
+         console.log(outfiles);
          console.log(data);
-         console.log(lircdpath);
+         //console.log(lircdpath);
         } else {
             console.log('no lines found');
         }
@@ -263,138 +374,141 @@ app.get('/mode2/:outfile', function(req,res){
         console.log('test', err);
         }
     });
-     console.log(lircdpath);
 
-     combinedstream.append(function(next) {
-       next(fs.createReadStream('lircdpath'));
-     });
+     var target = outfiles;
 
-     /*fs.appendFile(lircdpath,data, function(err) {
-       if(err) { console.log(err);}
-       else{
-          console.log(getData(lircdpath,data)); 
-         
-       }
-     });*/
+     console.log('json: ', jsonStr['aircon']);
+
 
   } 
   else{
     outfiles = outfile.toString();
-    var mode2command = "sudo mode2 -d /dev/lirc0 -m > " + outfile;
-   
-    cp.exec("sudo /etc/init.d/lirc stop", function(error, stdout, stderr) {
-      if(error) {}
-       //res.send("Error stopping LIRC");
-      else {}
-       //res.send("Success");
-    });
-   
-   /*exec(mode2command, {timeout: 1000, maxBUffer: 200*1024, killSignal: 'SIGKILL', cwd: null, env:null},function(err, stdout, stderr){
-      console.log('stdout: ' +stdout);
-      console.log('stderr: ' + stderr);
-      if (err != null) {
-        console.log('exec error: '+ err);
-      }  
-
-    });*/
-
+    var mode2command = "sudo mode2 -d /dev/lirc0 -m > " + outfiles;
+  
   mode2child =  cp.exec(mode2command, function(error, stdout, stderr){
       if(error){
         res.send("Error sending "+ mode2command);
 
       }else {
-        console.log("Successfully sent mode2 > "+outfile);
+        console.log("Successfully sent mode2 > "+outfiles);
        }
     });
  }
 });
     
+app.post('/schedule/:remote/:command', function(req,res) {
+    
+   // var job = new CronJob('00
+    cp.exec("sudo /etc/init.d/lirc start", function (err) {
 
+      if(!err) {
 
-    /*
-    var filePath = './'+outfile;
-
-    fs.readFile(filePath, function(err, data) { // read file to memory
-      if (!err) {
-        data = data.toString(); // stringify buffer
-        var position = data.toString().indexOf('\n'); // find position of new line element
-        if (position != -1) { // if new line element found
-            data = data.substr(position + 1); // subtract string based on first line length
-
-            fs.writeFile(filePath, data, function(err) { // write file
-                if (err) { // if error, report
-                    console.log (err);
-                }
-            });
-        } else {
-            console.log('no lines found');
-        }
-      } else {
-          console.log(err);
-        }
-    });
- 
-    res.send(data);
-    */
-    //execSync (mode2command, SIGTERM);
-    //execSync ('sudo vim power');
-/*    
-    var readline = require('readline');
-    var stream = require('stream');
-
-    var instream = fs.createReadStream('outfile');
-    var outstream = new stream;
-    var rl = readline.createInterface(instream, outstream);
-
-    rl.on('line', function(line) {
-    // process line here
+       //console.log('remote: ',req.body.remote);
+       //console.log('date: ',req.body.datepicker);
+       //console.log('start: ',req.body.start_time);
+       //console.log('end: ',req.body.end_time);
+       //console.log('temp: ',req.body.temp);
+       //console.log('fan: ',req.body.fan);
+     }
     });
 
-    rl.on('close', function() {
-    // do something on finish here
-    }); 
+  var arr_starttime = req.body.start_time.split(":");
+  var arr_endtime = req.body.end_time.split(":");
+  var arr_date = req.body.datepicker.split("-");
+  var start_hr = req.body.start_time.split(":")[0];
+  var start_min = req.body.start_time.split(":")[1];;
+  var end_hr = req.body.end_time.split(":")[0];
+  var end_min = req.body.end_time.split(":")[1].toString();
+  var day = req.body.datepicker.split("-")[2];
+  var month = req.body.datepicker.split("-")[1];
+  var temp = req.body.temp;
+  var year;  
+  //var arr_starttime = arr_starttime.map(function (val) { 
+  //  console.log("test: ", val) 
+    
+  //});
 
-    res.send(JST['teach'].render({
-      commandline: mode2command
+  console.log('remote: ',req.body.remote);
+       console.log('start_hr: ',start_hr);
+       console.log('start_min: ',start_min);
+       console.log('end_hr: ',end_hr);
+       console.log('end_min: ',end_min);
+       console.log('day: ',day);
+       console.log('month: ',month);
+       console.log('temp: ',req.body.temp);
+       console.log('fan: ',req.body.fan);
+
+
+   /*Crontab.load(function(err, crontab){
+     if (err) {
+       console.log(err);
+     } 
+     else{
+       cp.exec("sudo /etc/init.d/lirc start");
+       crontab.create('sudo irsend SEND_ONCE aircon '+temp+'', '0 '+start_min+' '+start_hr+' '+day+' '+month+'');    
+     }*/
+   
+
+
+   // });
+  var start_pattern = '0 '+start_min+' '+start_hr+' '+day+' '+month+' *';
+  var end_pattern = '0 '+end_min+' '+end_hr+' '+day+' '+month+' *';
+
+  var start = schedule.scheduleJob(start_pattern, function() {
+
+    cp.exec("sudo /etc/init.d/lirc start");
+  
+    var irsend = "sudo irsend SEND_ONCE aircon power";
+    cp.exec(irsend, function() {});
+    
+    var tempsend = "sudo irsend SEND_ONCE aircon"+temp;
+    cp.exec(tempsend,function() {});
+
+    console.log("Let's start");
+
+    globalstatus = 'ON'
+
+}); 
+
+  var end = schedule.scheduleJob(end_pattern, function() {
+
+    cp.exec("sudo /etc/init.d/lirc start");
+  
+    var irsend = "sudo irsend SEND_ONCE aircon power";
+    cp.exec(irsend, function() {});
+
+    console.log("Changed");
+
+    globalstatus = 'OFF';
+
+}); 
+    
+    globaltemp = req.body.temp;
+/*   
+    res.send(JST['status2'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters,
+        labelForRemote: labelFor.remote,
+        labelForCommand: labelFor.command,
+        temp: req.body.temp
     }));
-
-    
-    if (process.platform === "win32") {
-         var rl = require("readline").createInterface({
-         input: process.stdin,
-         output: process.stdout
-       });
-
-      rl.on("SIGINT", function () {
-        process.emit("SIGINT");
-      });
-    }  
-
-    process.on("SIGINT", function () {
-      //graceful shutdown
-      process.exit();
-    });
-    
-  }    
-
-  return true;
 */
+    res.setHeader('Cache-Control', 'no-cache');
+    res.send(200);
 
 
+   // console.log('start' req.body.start
 
-/*app.post('/out/:outfile ',function(req,res){
+    //var acname = req.body.ac.toLowerCase();  
 
-  lirc_node.mode2.out(req.params.outfile, function() {});
-  res.setHeader('Cache-Control', 'no-cache');
-  res.send(200);
-});*/
+});
 
 
 // Send :remote/:command one time
 app.post('/remotes/:remote/:command', function(req, res) {
 
-    console.log(req.params.remote);
-    console.log(req.params.command);
+    cp.exec("sudo /etc/init.d/lirc start");
 
     lirc_node.irsend.send_once(req.params.remote, req.params.command, function() {});
     res.setHeader('Cache-Control', 'no-cache');
@@ -451,4 +565,4 @@ app.post('/macros/:macro', function(req, res) {
 
 // Default port is 3000
 app.listen(3000);
-console.log("Open Source Universal Remote UI + API has started on port 3000.");
+console.log("RACOS UI + API has started on port 3000.");
